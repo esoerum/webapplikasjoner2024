@@ -7,8 +7,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --bg-color: #e0ffff;
-  --button-bg: #21b6a8
+  --bg-color: #f0ffff;
+  --button-bg: #21b6a8;
 }
 
 * {
@@ -54,6 +54,8 @@
   gap: 10px;
   width:75%; 
   margin-top: 5%;
+  font-style: bold;
+  font-weight: 1000;
   
   }
   #todo-form
