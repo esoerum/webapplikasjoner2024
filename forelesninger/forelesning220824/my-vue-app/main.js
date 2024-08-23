@@ -7,6 +7,6 @@ console.log(darkModeButton)
 function toggleDarkMode() {
   document.body.classList.toggle('dark-mode')
 }
-
+  
 
 darkModeButton.addEventListener('click', toggleDarkMode)

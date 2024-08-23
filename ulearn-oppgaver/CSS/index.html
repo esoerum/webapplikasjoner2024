@@ -9,16 +9,26 @@
     <!-- Link til css -->
     <link rel="stylesheet" type="text/css" href="styles.css"/>
   </head>
-  <header>
-    <h1>HIOF</h1>
+  <header class="header-container">
+    <h1 id="headline-one">HIOF</h1>
     <!--Navigation-->
     <nav>
+      <a href="#">User user</a>
     </nav>
   </header>
   <body>
     <!-- Add HTML -->
      <main>
     <!--Here comes the main content on the page-->
+    <section class="todo-container">
+      <form id="todo-form">
+        <label for="title">Title</label>
+        <input type="text" id="input-todo">
+        <label for="content">Content</label>
+        <input type="text" id="input-todo">
+        <button type="submit" value="Submit">Add</button>
+      </form>
+    </section>
      </main>
      <footer>
      </footer>
