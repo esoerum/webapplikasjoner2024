@@ -285,7 +285,7 @@ newSection2.textContent = 'En overskrift';
 
 //.getElements, flere varianter
 
-//.getElementsById(), henter første element med lik ID
+//.getElementById(), henter første element med lik ID
 //HTML
 <h1 id="page-title">En tittel</h1>
 //JS
@@ -350,7 +350,7 @@ let spaces = '                        unødvendige mellomrom                ';
 console.log(spaces.trim());
 // finnes også trimStart() og trimEnd(), der sistnevnte kan være lur for å fjerne mellomrom eller tabs på slutten av inpuit i et skjema.
 
-//Metoder brukt på arrays
+//METODER BRUKT PÅ EN ARRAY//
 //.length og hente verdi på index
 const baseArray = [1, 2, 50];
 const firstValue = baseArray[0]; // 1
@@ -360,3 +360,164 @@ const lastValue = baseArray[baseArray.length -1];
 //includes og indexOf, includes brukes til å undersøke om en array inneholder en bestemt verdi. indexOf brukes til å finne index til en verdi. 
 const baseArrayAgain = [1, 2, 3];
 const includes = baseArray.includes(2);
+
+//.pop, push, shift og slice. 
+const thisArrayAgain = [1, 2, 3, 4, 5];
+
+//Legger til 50
+//Ny lengde blir 6
+//[1, 2, 3, 4, 5, 50]
+const push = thisArrayAgain.push(50);
+//50 - henter siste element
+// sitter da igjen med [1, 2, 3, 4, 5]
+const pop = thisArrayAgain.pop();
+//1 - henter første element
+// sitter da igjen med [2, 3, 4, 5]
+const shift = baseArray.shift();
+//[3, 4] - henter fra og med index 1 til index 3
+//Sitter fortsatt igjen med [2, 3, 4, 5]
+const slice = baseArray.slice(1, 3);
+
+//Array.from(), brukes for å gjøre om til array
+//gir oss en nodeList som ligner en array, men ikke helt lik
+//må gjøre om til array for å kunne bruke alle metoder vi har på array
+const liElements = document.querySelector("li");
+const nodeListToArray = Array.from(liElements); //Array 
+const arrayfrom = Array.from('word') // [w, o, r, d]
+
+//Array.isArray(), brukes til å sjekke om noe er en array
+const baseArrayAnotherTime = [1, 2, 3, 4, 5];
+const isArray = Array.isArray(baseArrayAnotherTime); //true
+
+//METODER BRUKT PÅ OBJEKTER
+
+//hente verdier basert på nøkler
+const obj = {
+    key: 'value',
+    anotherKey: 1337, 
+    nested: {
+        keyONe: true,
+        keyTwo: false,
+    
+    },
+    myFunction() {
+        return "content";
+    }, 
+};
+const myVar = "key";
+const value = obj.key // value
+const valueTwo = obj["key"] //value
+const valueThree = obj[myVar] // value
+const nested = obj.nested.keyONe; //true
+const content = obj.myFunction() //content
+
+//fjerne og legge til verdier, vi kan fjerne, endre og legge til verdier i et objekt
+const emptyObj = {}
+    emptyObj.myKey = 'myValue';
+    emptyObj.myOtherKey = true;
+    
+    console.log(emptyObj); //  {myKey: myValue, myOtherKey: true}
+
+    delete emptyObj.myKey
+    console.log(emptyObj); // {myOtherKey: true}
+
+    emptyObj.myOtherKey = 'changeValue'
+    console.log(emptyObj); // {myOtherKey: changeValue}
+
+    //JSON.stringify(), kan gjøre et objekt om til string for å skrive det ut / se hva vi har å jobbe med
+    const objact = {
+        key: 'value',
+        anotherKey: 1337,
+        nested: {
+            keyOne: true,
+            keyTwo: false,
+        },
+    };
+    const stringify = JSON.stringify(obj); // lager string av objektet
+    const parseJson = JSON.parse(stringify) //gjør det om til objekt igjen
+
+    //Object.values(), bruke sfor å hente ut alle verdiene i et objekt
+
+    const baseObj = {
+        name: 'Espen Sørum',
+        age: 32,
+        male: true,
+    };
+    const objValues = Object.values(baseObj); // [Espen Sørum, 32, true]
+    //Object.keys(), henter ut keys
+    const objKeys = Object.keys(baseObj); // [name, age, male]
+    //Object.entres(), brukes til å hente nøkler og verdier
+    const objKeysValues = Object.entries(baseObj); // [['name', 'Espen Sørum], ['age', 32], ['male', true]]
+
+    //Events, for å lytte på endringer eller handlinger, må man brukke .addEventListener på et element
+    //hente element
+    let btn = document.querySelector('button');
+    //click er event vi lytter etter på knappen
+    btn.addEventListener('click', () => {
+        //det som skal skje når knappen er trykket
+        console.log('Knapp trykket');
+    });
+
+    //Eventhandlers, det er annen måte å lytte til events enn addEventListener. Man kan sette attributter rett på elementet i HTML, lage
+    //en funksjon i JS som skal kjøre når noe skjer med elementet i HTML, dette starter gjerne med 'onClick' f.eks
+    let eventHandler = (event) => {
+        event.preventDefault();
+        console.log('Knapp trykket');
+    };
+    //HTML
+    <div>
+      <button onclick="eventHandler()">Trykk på meg</button>
+      {/* eventuelt kun ... */}
+      <button onclick="console.log('Knapp trykket')">Trykk på meg</button>
+    </div>
+    /*Ulemper med event handlers --> JS-kode blir blandet med HTML. Ved større refaktoreringer, uoversiktlig
+    *Hvis HTML-elementet er ferdig lastet før JS-koden kan brukere trykket på elementet uten at noe skjer
+    * Kan kun knytte en handler til et element
+    * Kan ikke gjenbruke logikk
+    */
+    //preventDefault(), noen elementer har handlinger, form vil sende skjema, mens <a> vil sende bruker til linken. Dette kan unngås med preventDefault. 
+    //hente element
+    let blabla = document.querySelector('button');
+    //click er event vi lytter etter
+    blabla.addEventListener('click', (event) => {
+        //det som skal skje når knappen er trykket
+        event.preventDefault();
+        console.log('Knappen er trykket');
+    });
+    //target og currentTarget
+    /*
+    event.currentTarget peker på elementet event listener er satt på
+    event.target peker på elementet som trigget eventet/elementet bruker f.eks trykket på
+
+    Mouse Events - Mulighet å lytte til brukerens datamusbevegelser bla. 'onclick'
+    * 'dblclick' - dobbeltklikk
+    * 'mousemove' - fyrer konstant mens datamusen beveger seg så lite som 1px.
+    * 'mouseover' - fyrer når datamusen beveger seg inn på elementet, eller barna
+    * 'mouseout' - fyrer når datamusen beveges ut av elementet, eller barna
+    * 'mouseenter' - fyrer når musen beveges inn på elementet, men ikke barna
+    * 'mouseleave' - fyrer når musen beveges ut av elementet, men ikke barna
+    * 
+    Keyboard events
+    * 'keypress' - så lenge man trykker på tastaturet
+    * 'keydown' - fyrer når tast trykkes ned, og når tasten holdes inne
+    * 'keyup' - fyrer når tast slippes
+    */
+
+    //STYLING I JS, mulig å sette css på html i JS, ofte i kombo med events
+    //endre css stil
+    //html element
+    <button class='btn-save'>Lagre</button>
+    //henter html-element
+    let saveBtnAgain = document.querySelector('.btn-Save');
+    //endrer bakgrunnsfargen til sort
+    saveBtnAgain.style.backgroundcolor = '#000';
+
+    //classList, vi kan bruke classList og legge til .add, .remove og .toggle
+    <p class="one two three" id="id">Tekst</p>
+    const id = document.getElementById("id");
+    console.log(id.classList) // ["one", "two", "three"]
+
+    id.classList.add("four") // ["one", "two", "three", "four"]
+    id.classListRemove("one", "two") // ["three", "four"]
+    //skru av og på en klasse. f.eks når vi skal skjule/vise noe
+    id.classList.toggle("visible"); // ["three", "four", "visible"]
