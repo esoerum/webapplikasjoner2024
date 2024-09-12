@@ -19,8 +19,11 @@ app.post('/add', async (c) => {
   if (foundId) {
     return c.json({ message: "Joke already exists" });
   }
-  else return c.json({ message: "Joke added"}, 201);
+  else dadJokes.push(body);
+  return c.json({ message: "Joke added"}, 201);
+  
 });
+
 
 const dadJokes = [
   {
